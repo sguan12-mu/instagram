@@ -64,4 +64,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDescription"
         app:srcCompat="@android:drawable/sym_action_chat" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="320dp"
+        android:layout_height="202dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="464dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

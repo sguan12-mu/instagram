@@ -1,6 +1,7 @@
 package com.example.instagram;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvDescription;
     private TextView tvTime;
     Post post;
+    RecyclerView rvComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         ivImage = findViewById(R.id.ivImage);
         tvDescription = findViewById(R.id.tvDescription);
         tvTime = findViewById(R.id.tvTime);
+        rvComments = findViewById(R.id.rvComments);
 
         post = (Post) getIntent().getParcelableExtra(Post.class.getSimpleName());
         tvDescription.setText(post.getDescription());
