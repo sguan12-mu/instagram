@@ -36,6 +36,13 @@ public class DetailActivity extends AppCompatActivity {
     protected List<Comment> allComments;
 
     @Override
+    protected void onRestart(){
+        super.onRestart();
+        adapter.clear();
+        queryComments();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
