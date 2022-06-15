@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogout;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private Button btnFeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+            }
+        });
+
+        btnFeed = findViewById(R.id.btnFeed);
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFeed();
             }
         });
     }
@@ -176,6 +185,13 @@ public class MainActivity extends AppCompatActivity {
             goLoginActivity();
             Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void goToFeed() {
+        Log.i(TAG, "going to main feed");
+        Intent i = new Intent(this, FeedActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void goLoginActivity() {
