@@ -9,11 +9,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity {
 
     private TextView tvUsername;
     private ImageView ivImage;
     private TextView tvDescription;
+    private TextView tvTime;
     Post post;
 
     @Override
@@ -23,6 +26,7 @@ public class DetailActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         ivImage = findViewById(R.id.ivImage);
         tvDescription = findViewById(R.id.tvDescription);
+        tvTime = findViewById(R.id.tvTime);
 
         post = (Post) getIntent().getParcelableExtra(Post.class.getSimpleName());
         tvDescription.setText(post.getDescription());
@@ -31,5 +35,9 @@ public class DetailActivity extends AppCompatActivity {
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivImage);
         }
+
+        Date createdAt = post.getCreatedAt();
+        String timeAgo = Post.calculateTimeAgo(createdAt);
+        tvTime.setText(timeAgo);
     }
 }
