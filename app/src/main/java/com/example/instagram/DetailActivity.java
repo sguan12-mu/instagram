@@ -134,7 +134,8 @@ public class DetailActivity extends AppCompatActivity {
         adapter.clear();
         // specify what type of data we want to query - Post.class
         ParseQuery<Comment> query = ParseQuery.getQuery(Comment.class);
-        // include data referred by user key
+        // include data if post matches
+        query.whereEqualTo(Comment.KEY_POST,post);
         query.include(Comment.KEY_USER);
         // limit query to latest 20 items
         query.setLimit(20);

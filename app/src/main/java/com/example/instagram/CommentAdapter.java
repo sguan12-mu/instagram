@@ -59,7 +59,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             super(itemView);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvComment = itemView.findViewById(R.id.tvComment);
-
         }
 
         public void bind(Comment comment) {
