@@ -41,8 +41,6 @@ public class FeedActivity extends AppCompatActivity {
         rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
-        // query posts from Parstagram
-        queryPosts();
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
@@ -59,6 +57,12 @@ public class FeedActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();;
+        queryPosts();
     }
 
     private void queryPosts() {
@@ -87,6 +91,7 @@ public class FeedActivity extends AppCompatActivity {
                 }
 
                 // save received posts to list and notify adapter of new data
+                adapter.clear();
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
             }

@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
         post.setUser(currentUser);
+        post.setLike(0);
         post.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {

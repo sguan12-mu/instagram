@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,14 +59,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvUsername;
+        private TextView tvUsername2;
         private ImageView ivImage;
         private TextView tvDescription;
+        private ImageButton ibLike;
+        private TextView tvLike;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
+            tvUsername2 = itemView.findViewById(R.id.tvUsername2);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            ibLike = itemView.findViewById(R.id.ibLike);
+            tvLike = itemView.findViewById(R.id.tvLike);
 
             itemView.setOnClickListener(this::onClick);
         }
@@ -74,9 +82,46 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
+            tvUsername2.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
+            }
+
+            ibLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (post.getLiked()) {
+                        post.setLike(post.getLike() - 1);
+                        post.setLiked(false);
+                    }
+                    else {
+                        post.setLike(post.getLike() + 1);
+                        post.setLiked(true);
+                    }
+                    setLike(post);
+                    post.saveInBackground();
+                }
+            });
+            setLike(post);
+        }
+
+        void setLike(Post post) {
+            if (post.getLiked()) {
+                // set full heart
+                ibLike.setImageDrawable(context.getDrawable(R.drawable.ufi_heart_active));
+            }
+            else {
+                // set empty heart
+                ibLike.setImageDrawable(context.getDrawable(R.drawable.ufi_heart));
+            }
+
+            // set text
+            if (post.getLike() == 1) {
+                tvLike.setText(String.valueOf(post.getLike())+" like");
+            }
+            else {
+                tvLike.setText(String.valueOf(post.getLike())+" likes");
             }
         }
 
