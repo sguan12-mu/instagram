@@ -88,6 +88,12 @@ public class FeedFragment extends Fragment {
         queryPosts(0);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();;
+        queryPosts(0);
+    }
+
     private void queryPosts(int skip) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);

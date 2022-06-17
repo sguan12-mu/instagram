@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/layout/activity_compose_comment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.36636629357802125" />
         <entry key="app/src/main/res/layout/activity_feed.xml" value="0.10733695652173914" />
+        <entry key="app/src/main/res/layout/activity_grid_adapter.xml" value="0.12273550724637682" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3156256103515625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10199737548828117" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.10137500765267762" />

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -18,9 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.instagram.LoginActivity;
-import com.example.instagram.MainActivity;
 import com.example.instagram.R;
-import com.example.instagram.adapters.PostsAdapter;
+import com.example.instagram.adapters.GridAdapter;
 import com.example.instagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,7 +33,7 @@ public class ProfileFragment extends Fragment {
     public String TAG = "ProfileFragment";
     private Button btnLogout;
     private RecyclerView rvPosts;
-    protected PostsAdapter adapter;
+    protected GridAdapter adapter;
     protected List<Post> allPosts;
     private TextView tvUsername3;
 
@@ -55,11 +54,12 @@ public class ProfileFragment extends Fragment {
         rvPosts = view.findViewById(R.id.rvPosts);
         // initialize the array that will hold posts and create a PostsAdapter
         allPosts = new ArrayList<>();
-        adapter = new PostsAdapter(getContext(), allPosts);
+        adapter = new GridAdapter(getContext(), allPosts);
         // set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rvPosts.setLayoutManager(linearLayoutManager);
+        int numColumns = 3;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), numColumns);
+        rvPosts.setLayoutManager(gridLayoutManager);
         queryPosts();
 
         tvUsername3 = view.findViewById(R.id.tvUsername3);
