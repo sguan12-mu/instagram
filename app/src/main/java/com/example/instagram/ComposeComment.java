@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.instagram.models.Comment;
+import com.example.instagram.models.Post;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;

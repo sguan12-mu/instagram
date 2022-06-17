@@ -1,13 +1,11 @@
 package com.example.instagram;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.parse.LogInCallback;
+import com.example.instagram.models.Comment;
+import com.example.instagram.models.Post;
 import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 public class ParseApplication extends Application {
     // initializes parse sdk as soon as the application is created
