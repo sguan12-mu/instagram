@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.instagram.adapters.CommentAdapter;
 import com.example.instagram.models.Comment;
 import com.example.instagram.models.Post;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -58,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescription);
         tvTime = findViewById(R.id.tvTime);
         rvComments = findViewById(R.id.rvComments);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         post = (Post) getIntent().getParcelableExtra(Post.class.getSimpleName());
         tvDescription.setText(post.getDescription());
@@ -110,6 +114,16 @@ public class DetailActivity extends AppCompatActivity {
         });
         tvLike = findViewById(R.id.tvLike);
         setLike();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void setLike() {
